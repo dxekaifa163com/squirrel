@@ -1,0 +1,6 @@
+dependencies {
+    compile project(':squirrel-common')
+    compile project(':squirrel-dal')
+  	testCompile("junit:junit")
+}
+

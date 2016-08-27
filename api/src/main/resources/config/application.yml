@@ -1,0 +1,59 @@
+server:
+  port: 8080
+
+project:
+  artifactId: squirrel
+  name: squirrel
+  description: squirrel
+
+info:
+  build:
+    artifact: ${project.artifactId}
+    name: ${project.name}
+    description: ${project.description}
+
+spring:
+  cache:
+    guava:
+      spec: maximumSize=2000,expireAfterAccess=300s
+  theme:
+    cookie:
+      defaultThemeName: base
+  thymeleaf:
+    cache: true
+  resources:
+    cachePeriod: 2592000
+  messages:
+    basename: i18n/locales
+
+multipart:
+  enabled: true
+  maxFileSize: 20Mb
+  maxRequestSize: 20Mb
+
+logging:
+  level:
+    ROOT: WARN
+    com.dxe.squirrel: INFO
+
+flyway:
+  enabled: false
+
+---
+spring:
+  profiles: local
+
+logging:
+  level:
+    org.springframework.boot: INFO
+    org.springframework.web: INFO
+    org.springframework.remoting.support: DEBUG
+    com.dxe.squirrel: DEBUG
+
+---
+spring:
+  profiles: local
+encrypt:
+  file: classpath:config/config.properties
+logging:
+  path: logs
